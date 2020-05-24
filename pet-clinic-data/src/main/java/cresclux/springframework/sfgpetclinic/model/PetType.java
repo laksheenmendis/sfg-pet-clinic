@@ -3,7 +3,7 @@ package cresclux.springframework.sfgpetclinic.model;
 /**
  * Created by laksheenmendis on 5/23/20 at 10:07 PM
  */
-public class PetType {
+public class PetType extends BaseEntity{
 
     private String name;
 

@@ -3,7 +3,7 @@ package cresclux.springframework.sfgpetclinic.model;
 /**
  * Created by laksheenmendis on 5/23/20 at 10:04 PM
  */
-public class Person {
+public class Person extends BaseEntity{
 
     private String firstName;
     private String lastName;
