@@ -13,7 +13,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.3.0.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath /> <!-- lookup parent from repository -->
     </parent>
     <groupId>cresclux.springframework</groupId>
     <artifactId>sfg-pet-clinic</artifactId>
@@ -46,6 +46,6 @@
     </build>
 
     <scm>
-        <developerConnection>scm:git:https://github.com/laksheenmendis/sfg-pet-clinic.git</developerConnection>
+        <developerConnection>scm:git:git@github.com:laksheenmendis/sfg-pet-clinic.git</developerConnection>
     </scm>
 </project>
