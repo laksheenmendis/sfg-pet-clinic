@@ -2,12 +2,14 @@ package cresclux.springframework.sfgpetclinic.services.map;
 
 import cresclux.springframework.sfgpetclinic.model.Vet;
 import cresclux.springframework.sfgpetclinic.services.VetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 /**
  * Created by laksheenmendis on 5/24/20 at 4:12 PM
  */
+@Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
 
     @Override

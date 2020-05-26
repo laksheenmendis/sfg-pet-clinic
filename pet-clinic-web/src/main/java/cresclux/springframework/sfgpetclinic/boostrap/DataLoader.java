@@ -4,8 +4,6 @@ import cresclux.springframework.sfgpetclinic.model.Owner;
 import cresclux.springframework.sfgpetclinic.model.Vet;
 import cresclux.springframework.sfgpetclinic.services.OwnerService;
 import cresclux.springframework.sfgpetclinic.services.VetService;
-import cresclux.springframework.sfgpetclinic.services.map.OwnerServiceMap;
-import cresclux.springframework.sfgpetclinic.services.map.VetServiceMap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -23,9 +21,9 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
 
-    public DataLoader() {
-        ownerService = new OwnerServiceMap();
-        vetService = new VetServiceMap();
+    public DataLoader(OwnerService ownerService, VetService vetService) {
+        this.ownerService = ownerService;
+        this.vetService = vetService;
     }
 
     // since this is a Spring component, this will be registered as a Bean in the spring context,
