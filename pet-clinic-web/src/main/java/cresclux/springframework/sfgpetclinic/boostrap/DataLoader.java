@@ -1,11 +1,9 @@
 package cresclux.springframework.sfgpetclinic.boostrap;
 
-import cresclux.springframework.sfgpetclinic.model.Owner;
-import cresclux.springframework.sfgpetclinic.model.Pet;
-import cresclux.springframework.sfgpetclinic.model.PetType;
-import cresclux.springframework.sfgpetclinic.model.Vet;
+import cresclux.springframework.sfgpetclinic.model.*;
 import cresclux.springframework.sfgpetclinic.services.OwnerService;
 import cresclux.springframework.sfgpetclinic.services.PetTypeService;
+import cresclux.springframework.sfgpetclinic.services.SpecialityService;
 import cresclux.springframework.sfgpetclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -26,11 +24,13 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
+    private final SpecialityService specialityService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
+        this.specialityService = specialityService;
     }
 
     // since this is a Spring component, this will be registered as a Bean in the spring context,
@@ -39,6 +39,15 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        int count = petTypeService.findAll().size();
+
+        if(count == 0)
+        {
+            loadData();
+        }
+    }
+
+    private void loadData() {
         PetType dog = new PetType();
         dog.setName("Dog");
         // to make sure that PetType is saved
@@ -47,6 +56,18 @@ public class DataLoader implements CommandLineRunner {
         PetType cat = new PetType();
         dog.setName("Cat");
         PetType savedCatPetType = petTypeService.save(cat);
+
+        Speciality radiology = new Speciality();
+        radiology.setDescription("Radiology");
+        Speciality savedRadiology = specialityService.save(radiology);
+
+        Speciality surgery = new Speciality();
+        radiology.setDescription("Surgery");
+        Speciality savedSurgery = specialityService.save(surgery);
+
+        Speciality dentistry = new Speciality();
+        radiology.setDescription("Dentistry");
+        Speciality savedDentistry = specialityService.save(dentistry);
 
         Owner owner1 = new Owner();
         owner1.setFirstName("Laksheen");
@@ -57,7 +78,7 @@ public class DataLoader implements CommandLineRunner {
 
         Pet laksheensPet = new Pet();
         laksheensPet.setName("Teena");
-        laksheensPet.setPetType(dog);
+        laksheensPet.setPetType(savedDogPetType);
         laksheensPet.setOwner(owner1);
         laksheensPet.setBirthdate(LocalDate.now());
         owner1.getPets().add(laksheensPet);
@@ -73,7 +94,7 @@ public class DataLoader implements CommandLineRunner {
 
         Pet hiranyasPet = new Pet();
         hiranyasPet.setName("Sweety");
-        hiranyasPet.setPetType(cat);
+        hiranyasPet.setPetType(savedCatPetType);
         hiranyasPet.setOwner(owner2);
         hiranyasPet.setBirthdate(LocalDate.now());
         owner2.getPets().add(hiranyasPet);
@@ -85,12 +106,14 @@ public class DataLoader implements CommandLineRunner {
         Vet vet1 = new Vet();
         vet1.setFirstName("Sam");
         vet1.setLastName("Matthews");
+        vet1.getSpecialities().add(savedRadiology);
 
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
         vet2.setFirstName("Marie");
         vet2.setLastName("Bilbao");
+        vet2.getSpecialities().add(savedSurgery);
 
         vetService.save(vet2);
 

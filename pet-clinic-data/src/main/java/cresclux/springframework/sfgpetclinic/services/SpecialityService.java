@@ -5,5 +5,5 @@ import cresclux.springframework.sfgpetclinic.model.Speciality;
 /**
  * Created by laksheenmendis on 6/20/20 at 12:17 AM
  */
-public interface SpecialitiesService extends CrudService<Speciality, Long>{
+public interface SpecialityService extends CrudService<Speciality, Long>{
 }
