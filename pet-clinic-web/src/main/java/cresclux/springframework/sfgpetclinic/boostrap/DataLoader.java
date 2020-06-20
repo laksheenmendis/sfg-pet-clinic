@@ -1,8 +1,10 @@
 package cresclux.springframework.sfgpetclinic.boostrap;
 
 import cresclux.springframework.sfgpetclinic.model.Owner;
+import cresclux.springframework.sfgpetclinic.model.PetType;
 import cresclux.springframework.sfgpetclinic.model.Vet;
 import cresclux.springframework.sfgpetclinic.services.OwnerService;
+import cresclux.springframework.sfgpetclinic.services.PetTypeService;
 import cresclux.springframework.sfgpetclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -20,10 +22,12 @@ public class DataLoader implements CommandLineRunner {
 
     private final OwnerService ownerService;
     private final VetService vetService;
+    private final PetTypeService petTypeService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
+        this.petTypeService = petTypeService;
     }
 
     // since this is a Spring component, this will be registered as a Bean in the spring context,
@@ -31,6 +35,16 @@ public class DataLoader implements CommandLineRunner {
     // it will execute this run method
     @Override
     public void run(String... args) throws Exception {
+
+        PetType dog = new PetType();
+        dog.setName("Dog");
+        // to make sure that PetType is saved
+        PetType savedDogPetType = petTypeService.save(dog);
+
+        PetType cat = new PetType();
+        dog.setName("Cat");
+        PetType savedCatPetType = petTypeService.save(cat);
+
         Owner owner1 = new Owner();
         owner1.setFirstName("Laksheen");
         owner1.setLastName("Mendis");
