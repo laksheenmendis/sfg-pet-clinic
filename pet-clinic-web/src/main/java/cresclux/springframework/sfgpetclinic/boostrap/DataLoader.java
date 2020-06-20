@@ -1,6 +1,7 @@
 package cresclux.springframework.sfgpetclinic.boostrap;
 
 import cresclux.springframework.sfgpetclinic.model.Owner;
+import cresclux.springframework.sfgpetclinic.model.Pet;
 import cresclux.springframework.sfgpetclinic.model.PetType;
 import cresclux.springframework.sfgpetclinic.model.Vet;
 import cresclux.springframework.sfgpetclinic.services.OwnerService;
@@ -8,6 +9,8 @@ import cresclux.springframework.sfgpetclinic.services.PetTypeService;
 import cresclux.springframework.sfgpetclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 /**
  * Created by laksheenmendis on 5/25/20 at 10:07 PM
@@ -48,12 +51,32 @@ public class DataLoader implements CommandLineRunner {
         Owner owner1 = new Owner();
         owner1.setFirstName("Laksheen");
         owner1.setLastName("Mendis");
+        owner1.setAddress("97 Negombo Road");
+        owner1.setCity("Colombo");
+        owner1.setTelephone("134028033");
+
+        Pet laksheensPet = new Pet();
+        laksheensPet.setName("Teena");
+        laksheensPet.setPetType(dog);
+        laksheensPet.setOwner(owner1);
+        laksheensPet.setBirthdate(LocalDate.now());
+        owner1.getPets().add(laksheensPet);
 
         ownerService.save(owner1);
 
         Owner owner2 = new Owner();
         owner2.setFirstName("Hiranya");
         owner2.setLastName("Fernando");
+        owner2.setAddress("97 Negombo Road");
+        owner2.setCity("Colombo");
+        owner2.setTelephone("134028033");
+
+        Pet hiranyasPet = new Pet();
+        hiranyasPet.setName("Sweety");
+        hiranyasPet.setPetType(cat);
+        hiranyasPet.setOwner(owner2);
+        hiranyasPet.setBirthdate(LocalDate.now());
+        owner2.getPets().add(hiranyasPet);
 
         ownerService.save(owner2);
 

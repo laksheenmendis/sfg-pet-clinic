@@ -1,7 +1,7 @@
 package cresclux.springframework.sfgpetclinic.services.map;
 
 import cresclux.springframework.sfgpetclinic.model.Pet;
-import cresclux.springframework.sfgpetclinic.services.CrudService;
+import cresclux.springframework.sfgpetclinic.services.PetService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -10,7 +10,7 @@ import java.util.Set;
  * Created by laksheenmendis on 5/24/20 at 4:08 PM
  */
 @Service
-public class PetServiceMap extends AbstractMapService<Pet,Long> implements CrudService<Pet,Long> {
+public class PetServiceMap extends AbstractMapService<Pet,Long> implements PetService {
 
     @Override
     public Pet findById(Long id) {
