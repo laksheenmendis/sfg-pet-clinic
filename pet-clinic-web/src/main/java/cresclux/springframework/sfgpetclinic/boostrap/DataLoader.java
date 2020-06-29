@@ -1,10 +1,7 @@
 package cresclux.springframework.sfgpetclinic.boostrap;
 
 import cresclux.springframework.sfgpetclinic.model.*;
-import cresclux.springframework.sfgpetclinic.services.OwnerService;
-import cresclux.springframework.sfgpetclinic.services.PetTypeService;
-import cresclux.springframework.sfgpetclinic.services.SpecialityService;
-import cresclux.springframework.sfgpetclinic.services.VetService;
+import cresclux.springframework.sfgpetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -25,12 +22,14 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialityService specialityService;
+    private final VisitService visitService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialityService = specialityService;
+        this.visitService = visitService;
     }
 
     // since this is a Spring component, this will be registered as a Bean in the spring context,
@@ -100,6 +99,13 @@ public class DataLoader implements CommandLineRunner {
         owner2.getPets().add(hiranyasPet);
 
         ownerService.save(owner2);
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(hiranyasPet);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Sneezy kitty");
+
+        visitService.save(catVisit);
 
         System.out.println("Loaded Owners...");
 
