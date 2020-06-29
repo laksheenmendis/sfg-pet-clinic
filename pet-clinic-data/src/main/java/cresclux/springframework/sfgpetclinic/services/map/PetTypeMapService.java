@@ -2,6 +2,7 @@ package cresclux.springframework.sfgpetclinic.services.map;
 
 import cresclux.springframework.sfgpetclinic.model.PetType;
 import cresclux.springframework.sfgpetclinic.services.PetTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -10,6 +11,7 @@ import java.util.Set;
  * Created by laksheenmendis on 6/19/20 at 11:37 PM
  */
 @Service
+@Profile({"default", "map"})
 public class PetTypeMapService extends AbstractMapService<PetType, Long> implements PetTypeService {
 
     @Override

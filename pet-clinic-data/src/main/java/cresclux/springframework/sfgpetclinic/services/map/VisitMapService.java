@@ -2,6 +2,7 @@ package cresclux.springframework.sfgpetclinic.services.map;
 
 import cresclux.springframework.sfgpetclinic.model.Visit;
 import cresclux.springframework.sfgpetclinic.services.VisitService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -10,6 +11,7 @@ import java.util.Set;
  * Created by laksheenmendis on 6/29/20 at 12:45 AM
  */
 @Service
+@Profile({"default", "map"})
 public class VisitMapService extends AbstractMapService<Visit, Long> implements VisitService {
 
     @Override
